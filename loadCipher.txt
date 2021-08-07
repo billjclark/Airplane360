@@ -1,0 +1,4 @@
+// Create Airplanes
+LOAD CSV WITH HEADERS FROM 'file:///C:/Users/billc/IdeaProjects/Airplane360/airplanes.csv'
+MERGE (airplane:Airplane {name: row.name, model: row.Model})
+    ON CREATE SET airplane.name = row.name;
