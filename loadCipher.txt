@@ -1,4 +1,13 @@
+
+CREATE CONSTRAINT ON (a:Airplane) ASSERT a.Airplane IS UNIQUE;
+CREATE CONSTRAINT ON (e:Engine) ASSERT e.Engine IS UNIQUE;
+CREATE CONSTRAINT ON (c:Company) ASSERT c.Name IS UNIQUE;
+
+USING PERIODIC COMMIT
+
 // Create Airplanes
-LOAD CSV WITH HEADERS FROM 'file:///C:/Users/billc/IdeaProjects/Airplane360/airplanes.csv'
-MERGE (airplane:Airplane {name: row.name, model: row.Model})
-    ON CREATE SET airplane.name = row.name;
+LOAD CSV WITH HEADERS FROM 'https://github.com/billjclark/Airplane360/blob/master/Airplanes.csv' AS row
+MERGE (airplane:Airplane {Airplane: row.Airplane, model: row.Model})
+    ON CREATE SET airplane.name = row.Airplane;
+
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Airplanes.csv' AS line WITH line return line

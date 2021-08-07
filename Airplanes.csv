@@ -1,6 +1,12 @@
-Airplane,Model
-Spitfire,Mark IX
-Mustang,P-51
-Corsair,F4U
-Thunderbolt,P-47
-Warhawk,P-51
+Model,Name,Company,Engine,Nbr of Engines,Flap Type,Landing Gear
+Mark IX,Spitfire,Supermarine,Merlin,1,Split,Tail dragger
+P-51,Mustang,North American,Merlin,1,Plain,Tail Dragger
+F4U,Corsair,Vought,R-2800,1,Fowler,Tail Dragger
+P-47,Thunderbolt,Republic,R-2800,1,Plain,Tail Dragger
+P-40,Warhawk,Curtis-Wright,V-1710,1,Split,Tail Dragger
+,Lancaster,Avro,Merlin,4,Plain,Tail Dragger
+,Mosquito,de Havilland,Merlin,2,Plain,Tail Dragger
+P-38,Lightning,Lockheed,V-1710,2,Plain,Tripod
+P-39,Aircobra,Bell,V-1710,1,Plain,Tripod
+B-17,Flying Fortress,Boeing,R-1820,4,Plain,Tail dragger
+B-25,Mitchell,North American,R-2600,2,Plain,Tail dragger
