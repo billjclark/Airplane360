@@ -40,7 +40,8 @@ CREATE (airplane)-[:`Built By`]->(company)
 // Create Engines
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Engines.csv' AS row
 MERGE (engine:Engine {Name: row.Engine})
-SET engine.Type = row.Type, engine.Cylinders = row.Cylinders
+SET engine.Type = row.Type, engine.Cylinders = TOINT(row.Cylinders), engine.Horsepower = TOINT(row.Horsepower),
+engine.Sparkplugs = TOINT(row.Sparkplugs), engine.Displacement - TOINT(row.Displacement)
 MERGE (company:Company {Name: row.Company})
 MERGE (engine)-[:`Built By`]->(company)
 ;
