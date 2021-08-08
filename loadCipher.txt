@@ -67,7 +67,7 @@ MERGE (theater:Theater {Name: row.Name, CombatAlititude: TOINTEGER(row.CombatAli
 
 // Create Squadrons
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Squadrons.csv' AS row
-MERGE (squadron:Sqaudron {Name: row.Name, Size: TOINTEGER(row.Size), ReplacementEngines: TOINTEGER(row.ReplacementEngines), Pilots: TOINTEGER(row.Pilots)})
+MERGE (squadron:Squadron {Name: row.Name, Size: TOINTEGER(row.Size), ReplacementEngines: TOINTEGER(row.ReplacementEngines), Pilots: TOINTEGER(row.Pilots)})
 MERGE (airplane:Airplane {Name: row.Airplane})
 MERGE (theater:Theater {Name: row.Theater})
 MERGE (squadron)-[:Flies]->(airplane)
@@ -76,8 +76,8 @@ MERGE (squadron)-[:OperatesIn]->(theater)
 
 // Create Mishaps
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Crashes.csv' AS row
-MERGE (mishap:Mishap {ID: row.ID, FlightSegment: row.`Flight Segment`, Cause: row.Cause, Description: row.Description, Pilots: TOINTEGER(row.Pilots)})
+MERGE (mishap:Mishap {ID: row.ID, FlightSegment: row.`Flight Segment`, Cause: row.Cause, Description: row.Description, PilotHours: TOINTEGER(row.`Pilot Hours In Type`)})
 MERGE (airplane:Airplane {Name: row.Airplane})
-MERGE (theater:Theater {Name: row.Theater})
+MERGE (squadron:Squadron {Name: row.Squadron})
 MERGE (mishap)-[:Involved]->(airplane)
 MERGE (mishap)-[:HappenedIn]->(squadron)
