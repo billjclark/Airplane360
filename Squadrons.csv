@@ -1,0 +1,28 @@
+﻿Name,Theater,Airplane,Size,ReplacementEngines,Pilots
+1st,Europe,Mustang,12,6,18
+2nd,Europe,Mustang,12,6,18
+3rd,Mediterranean -Land,Mustang,10,5,15
+4th,Pacific - Land,Mustang,15,7,20
+5th,Europe,Spitfire,20,10,30
+6th,Middle East,Spitfire,10,9,20
+7th,Burma,Spitfire,12,8,18
+8th,Pacific - Land,Spitfire,15,7,20
+9th,Pacific - Sea,Spitfire,10,5,15
+10th,Europe,Flying Fortress,100,200,150
+11th,Mediterranean - Land,Flying Fortress,20,50,25
+12th,Pacific - Land,Corsair,15,7,20
+13th,Pacific - Sea,Corsair,10,5,15
+14th,Mediterranean - Land,Warhawk,10,5,15
+15th,Pacific - Land,Warhawk,20,10,30
+16th,Russia,Aircobra,10,1,35
+17th,Russia,Spitfire,10,2,26
+18th,Burma,Warhawk,10,1,12
+19th,Pacific - Land,Lightning,15,15,20
+20th,Europe,Lightning,10,5,15
+21th,Mediterranean - Land,Lightning,10,10,10
+22th,Europe,Thunderbolt,10,5,15
+23th,Europe,Lancaster,20,40,27
+24th,Europe,Mosquito,20,20,25
+25th,Mediterranean - Land,Mosquito,20,20,25
+26th,Burma,Mosquito,10,20,14
+27th,Middle East,Warhawk,12,6,18

@@ -12,10 +12,16 @@ RETURN line
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Theaters.csv' AS line WITH line
 LIMIT 1
 RETURN line
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Crashes.csv' AS line WITH line
+LIMIT 1
+RETURN line
+:schema
 
-CREATE CONSTRAINT ON (a:Airplane) ASSERT a.Airplane IS UNIQUE;
-CREATE CONSTRAINT ON (e:Engine) ASSERT e.Engine IS UNIQUE;
+// Create the constraints
+CREATE CONSTRAINT ON (a:Airplane) ASSERT a.Name IS UNIQUE;
+CREATE CONSTRAINT ON (e:Engine) ASSERT e.Name IS UNIQUE;
 CREATE CONSTRAINT ON (c:Company) ASSERT c.Name IS UNIQUE;
+CREATE CONSTRAINT ON (t:Theater) ASSERT t.Name IS UNIQUE
 
 USING PERIODIC COMMIT
 // Create Company
@@ -23,8 +29,31 @@ LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplan
 MERGE (Company:
 
 // Create Airplanes
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Airplanes.csvv' AS row
-MERGE (airplane:Airplane {name: row.Airplane, model: row.Model})
-    ON CREATE SET airplane.name = row.Airplane;
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Airplanes.csv' AS row
+MERGE (airplane:Airplane {Name: row.Name, Model: row.Name, FlapType: row.`Flap Type`, `Landing Gear`: row.`Landing Gear`})
+MERGE (company:Company {Name: row.Company})
+MERGE (engine:Engine {Name: row.Engine})
+CREATE (airplane)-[:`Powered By`]->(engine)
+CREATE (airplane)-[:`Built By`]->(company)
+;
+    ON CREATE SET airplane.Name = row.Name;
+// Create Engines
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Engines.csv' AS row
+MERGE (engine:Engine {Name: row.Engine})
+SET engine.Type = row.Type, engine.Cylinders = row.Cylinders
+MERGE (company:Company {Name: row.Company})
+MERGE (engine)-[:`Built By`]->(company)
+;
 
+// Create Companies
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Companies.csv' AS row
+MERGE (company:Company {Name: row.Name})
+SET company.Type = row.Type, company.Country = row.Country
+;
+// Create Crashes
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Crashes.csv' as row
+WITH SPLIT(row.crashdate,'/') AS date
+LIMIT 1
+RETURN date
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Airplanes.csv' AS line WITH line return line
+

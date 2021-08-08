@@ -1,8 +1,9 @@
-Europe
-Middle East
-Burma
-Pacific - Land
-Pacific - Sea
-Mediterranean - Land
-Mediterranean - Sea
-North Atlantic
+Name,CombatAlititude,AveTemp
+Europe,25000,5
+Middle East,15000,25
+Burma,10000,25
+Pacific - Land,10000,25
+Pacific - Sea,10000,25
+Mediterranean - Land,10000,25
+Mediterranean - Sea,10000,25
+North Atlantic,10000,5

@@ -1,0 +1,21 @@
+
+Airplane 360 Sample Usecases
+
+1) Supply Chain - Need to know how many replacement parts to ship to where, when
+    - How many Sparkplugs do I have to ship to different theaters
+    - How many spare Merlins do I have to ship to Europe?
+
+2) Safety - If a part fails, need to know which airplanes are affected
+    - Merlin is suffering from icing at high Altitudes.  Which Carb do we have to replace?
+    - Allison V-1170 oil pumps need to be replaced.  What squadrons do we have to ship oil pumps to?
+    - Are inexperienced pilots are having trouble landing taildragger vs Tripod landing gear?
+3) Design - Compare existing features of airplanes when designing new planes
+    - Which planes have Split Flaps and Radial Engines?
+    - Do the higher landing speeds of splt flap planes lead to more accidents?
+
+4) General Reference
+    - How many airplanes used Merlin engines in the Middle East?
+5) Airlines
+    - How many spare engines and sparkplugs will we need to support this route?
+    - What airplane should we buy for a given market?
+

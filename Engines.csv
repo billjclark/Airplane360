@@ -1,4 +1,5 @@
-﻿Company,Engine,Type,Cylinders,Displacement,BlowerType
-Rolls-Royce,Merlin,Inline,12,1200,Super
-Pratt-Whitney,R-2800,Radial,18,1700,Super
-Allison,V-1710,Inline,12,1700,Super
+﻿Company,Engine,Type,Cylinders,Sparkplugs,Displacement,BlowerType
+Rolls-Royce,Merlin,Inline,12,24,1200,Super
+Pratt-Whitney,R-2800,Radial,18,36,2800,Super
+Allison,V-1710,Inline,12,24,1700,Super
+Wright,R-1820,Radial,9,9,1820,Super
