@@ -1,4 +1,4 @@
-﻿Company,Engine,Type,# of Clynders,Displacement,Blower Type
+﻿Company,Engine,Type,Cylinders,Displacement,BlowerType
 Rolls-Royce,Merlin,Inline,12,1200,Super
 Pratt-Whitney,R-2800,Radial,18,1700,Super
 Allison,V-1710,Inline,12,1700,Super
