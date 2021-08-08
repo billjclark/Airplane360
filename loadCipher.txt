@@ -21,7 +21,9 @@ RETURN line
 CREATE CONSTRAINT ON (a:Airplane) ASSERT a.Name IS UNIQUE;
 CREATE CONSTRAINT ON (e:Engine) ASSERT e.Name IS UNIQUE;
 CREATE CONSTRAINT ON (c:Company) ASSERT c.Name IS UNIQUE;
-CREATE CONSTRAINT ON (t:Theater) ASSERT t.Name IS UNIQUE
+CREATE CONSTRAINT ON (t:Theater) ASSERT t.Name IS UNIQUE;
+CREATE CONSTRAINT ON (s:Squadron) ASSERT s.Name IS UNIQUE;
+CREATE CONSTRAINT ON (m:Mishap) ASSERT m.ID IS UNIQUE;
 
 USING PERIODIC COMMIT
 // Create Company
@@ -30,18 +32,18 @@ MERGE (Company:
 
 // Create Airplanes
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Airplanes.csv' AS row
-MERGE (airplane:Airplane {Name: row.Name, Model: row.Name, FlapType: row.`Flap Type`, `Landing Gear`: row.`Landing Gear`})
+MERGE (airplane:Airplane {Name: row.Name, Model: row.Name, Weight: TOINTEGER(row.Weight), `Nbr of Engines`: TOINTEGER(row.`Nbr of Engines`), FlapType: row.`Flap Type`, `Landing Gear`: row.`Landing Gear`})
 MERGE (company:Company {Name: row.Company})
 MERGE (engine:Engine {Name: row.Engine})
 CREATE (airplane)-[:`Powered By`]->(engine)
 CREATE (airplane)-[:`Built By`]->(company)
 ;
-    ON CREATE SET airplane.Name = row.Name;
+
 // Create Engines
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Engines.csv' AS row
 MERGE (engine:Engine {Name: row.Engine})
-SET engine.Type = row.Type, engine.Cylinders = TOINT(row.Cylinders), engine.Horsepower = TOINT(row.Horsepower),
-engine.Sparkplugs = TOINT(row.Sparkplugs), engine.Displacement - TOINT(row.Displacement)
+SET engine.Type = row.Type, engine.Cylinders = TOINTEGER(row.Cylinders), engine.Horsepower = TOINTEGER(row.Horsepower),
+engine.Displacement = TOINTEGER(row.Displacement), engine.Sparkplugs = TOINTEGER(row.Sparkplugs), engine.Displacement = TOINTEGER(row.Displacement)
 MERGE (company:Company {Name: row.Company})
 MERGE (engine)-[:`Built By`]->(company)
 ;
@@ -58,3 +60,24 @@ LIMIT 1
 RETURN date
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Airplanes.csv' AS line WITH line return line
 
+// Create Theaters
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Theaters.csv' AS row
+MERGE (theater:Theater {Name: row.Name, CombatAlititude: TOINTEGER(row.CombatAlititude), AveTemp: TOINTEGER(row.AveTemp)})
+;
+
+// Create Squadrons
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Squadrons.csv' AS row
+MERGE (squadron:Sqaudron {Name: row.Name, Size: TOINTEGER(row.Size), ReplacementEngines: TOINTEGER(row.ReplacementEngines), Pilots: TOINTEGER(row.Pilots)})
+MERGE (airplane:Airplane {Name: row.Airplane})
+MERGE (theater:Theater {Name: row.Theater})
+MERGE (squadron)-[:Flies]->(airplane)
+MERGE (squadron)-[:OperatesIn]->(theater)
+;
+
+// Create Mishaps
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/billjclark/Airplane360/master/Crashes.csv' AS row
+MERGE (mishap:Mishap {ID: row.ID, FlightSegment: row.`Flight Segment`, Cause: row.Cause, Description: row.Description, Pilots: TOINTEGER(row.Pilots)})
+MERGE (airplane:Airplane {Name: row.Airplane})
+MERGE (theater:Theater {Name: row.Theater})
+MERGE (mishap)-[:Involved]->(airplane)
+MERGE (mishap)-[:HappenedIn]->(squadron)

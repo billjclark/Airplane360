@@ -1,0 +1,10 @@
+
+//Delete Airplane
+MATCH (n:Airplane) DETACH DELETE n
+
+// Return an Airplane
+MATCH (airplane:Airplane {Name:"Mustang"}) return airplane
+
+// Return Mustang Node and Engine
+MATCH (airplane:Airplane {Name:"Mustang"})-[:`Powered By`] -> (engine:Engine) return  airplane, engine.
+
