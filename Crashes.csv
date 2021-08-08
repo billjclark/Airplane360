@@ -1,7 +1,7 @@
 ﻿ID,crashdate,Flight Segment,Pilot Hours In Type,Total Pilot Hours,Airplane,Cause,Description,Squadron
 1,1/3/1944,Take Off,100,750,Spitfire,Engine Failure,Engine Failed on take off.,5th
 2,2/21/1944,MidFlight,300,1000,Mustang,Engine Failure,Loss of coolant,2nd
-3,02/12/1944Take Off,,200,900,Corsair,Looped,Pilot lost control of the plane due to torque,12th
+3,2/12/1944,Take Off,200,900,Corsair,Looped,Pilot lost control of the plane due to torque,12th
 4,3/11/1944,Landing,150,800,Warhawk,Landing gear collapsed,Pilot landed hard and colapsed the landing gear,14th
 5,3/14/1944,MidFlight,200,1000,Warhawk,Engine Failure,Oil pump failed,15th
 6,3/21/1944,MidFlight,200,1000,Spitfire,Engine Failure,Carburator icing,7th
